@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Note Form{% endblock %}
+
+{% block content %}
+    <h2>{% if note %}Update{% else %}Create{% endif %} Sticky Note</h2>
+
+    <form method="post" class="form">  
+        {% csrf_token %} 
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="invalid-feedback">
+                    {{ form.title.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.content.label_tag }}
+            {{ form.content }}
+            {% if form.content.errors %}
+                <div class="invalid-feedback">
+                    {{ form.content.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+{% endblock %}
